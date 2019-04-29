@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
         //method init
         init();
 
-        bundle = getIntent().getExtras();
-        if (bundle != null) {
+        Intent intent = getIntent();
+        if (intent != null) {
             btn_save.setText("Update");
 
-            mId = bundle.getString("id");
-            mTitle = bundle.getString("title");
-            mDesc = bundle.getString("desc");
+            mId = intent.getStringExtra("id");
+            mTitle = intent.getStringExtra("title");
+            mDesc = intent.getStringExtra("desc");
 
             //set data
             tv_coba.setText(mTitle);
@@ -55,15 +55,15 @@ public class MainActivity extends AppCompatActivity {
             et_desc.setText(mDesc);
         } else {
 //            actionBar.setTitle("Add Data");
-            btn_save.setText("Save");
+            btn_save.setText("save");
         }
     }
 
     public void btn_save(View view) {
 
-//        Intent intent = getIntent();
+        Intent intent = getIntent();
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
+        if (intent != null) {
 //            btn_save.setText("Update");
             String id = mId;
             String title = et_title.getText().toString().trim();
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         String id = UUID.randomUUID().toString();
 
         Map<String, Object> doc = new HashMap<>();
-        doc.put("mid", id);
+        doc.put("id", id);
         doc.put("title", title);
         doc.put("description", desc);
 
