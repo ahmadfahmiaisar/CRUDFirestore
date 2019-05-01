@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
             btn_save.setText("Save");
         } else {
             btn_save.setText("Update");
-            mId = bundle.getString("id");
-            String mTitle = bundle.getString("title");
-            String mDesc = bundle.getString("desc");
+            mId = bundle.getString(Key.ID);
+            String mTitle = bundle.getString(Key.TITLE);
+            String mDesc = bundle.getString(Key.DESC);
 
             tv_coba.setText(mTitle);
             et_title.setText(mTitle);
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
 
         db.collection("Documents").document(id)
-                .update("title", title, "description", desc)
+                .update(Key.TITLE, title, Key.DESC, desc)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -107,9 +107,9 @@ public class MainActivity extends AppCompatActivity {
         String id = UUID.randomUUID().toString();
 
         Map<String, Object> doc = new HashMap<>();
-        doc.put("id", id);
-        doc.put("title", title);
-        doc.put("description", desc);
+        doc.put(Key.ID, id);
+        doc.put(Key.TITLE, title);
+        doc.put(Key.DESC, desc);
 
         //add this data
         db.collection("Documents").document().set(doc)

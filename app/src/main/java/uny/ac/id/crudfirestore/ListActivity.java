@@ -45,7 +45,7 @@ public class ListActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         progressDialog.dismiss();
                         for (DocumentSnapshot doc : task.getResult()) {
-                            ModelResponse model = new ModelResponse(doc.getString("mid"),
+                            ModelResponse model = new ModelResponse(doc.getString("id"),
                                     doc.getString("title"),
                                     doc.getString("description"));
                             modelList.add(model);

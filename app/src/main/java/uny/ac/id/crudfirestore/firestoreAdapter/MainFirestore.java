@@ -23,10 +23,12 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
+import uny.ac.id.crudfirestore.Key;
 import uny.ac.id.crudfirestore.MainActivity;
 import uny.ac.id.crudfirestore.R;
 import uny.ac.id.crudfirestore.model.ModelResponse;
@@ -95,21 +97,22 @@ public class MainFirestore extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 String choice = options[which].toString();
                                 if (choice.equals("Update")) {
+                                    String myId = modelResponse.getSnapshots().getSnapshot(position).getId();
                                     Intent intent = new Intent(MainFirestore.this, MainActivity.class);
-                                    intent.putExtra("id", model.getId());
-                                    intent.putExtra("title", holder.tv_title.getText().toString().trim());
-                                    intent.putExtra("desc", holder.tv_desc.getText().toString().trim());
+//                                    intent.putExtra(Key.ID, model.getId());
+                                    intent.putExtra(Key.ID, myId);
+                                    intent.putExtra(Key.TITLE, holder.tv_title.getText().toString().trim());
+                                    intent.putExtra(Key.DESC, holder.tv_desc.getText().toString().trim());
                                     startActivity(intent);
                                 }
                                 if (choice.equals("Delete")) {
-
-                                    db.collection("Documents").document(model.getId())
+                                    String myPath = modelResponse.getSnapshots().getSnapshot(position).getId();
+                                    db.collection("Documents").document(myPath)
                                             .delete()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     Toast.makeText(getApplicationContext(), "deleted", Toast.LENGTH_SHORT).show();
-//                                            show();
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
@@ -145,7 +148,6 @@ public class MainFirestore extends AppCompatActivity {
             tv_desc = itemView.findViewById(R.id.tv_description);
         }
     }
-
 
     @Override
     protected void onStart() {
