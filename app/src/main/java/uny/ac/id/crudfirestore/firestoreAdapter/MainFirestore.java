@@ -37,7 +37,6 @@ public class MainFirestore extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirestoreRecyclerAdapter adapter;
     LinearLayoutManager linearLayoutManager;
-//    AlertDialog.Builder alertDialog;
 
 
     @Override
@@ -47,6 +46,10 @@ public class MainFirestore extends AppCompatActivity {
 
         init();
         show();
+    }
+
+    public void btn_toSHow(View view) {
+        startActivity(new Intent(MainFirestore.this, MainActivity.class));
     }
 
     private void init() {
@@ -91,30 +94,30 @@ public class MainFirestore extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String choice = options[which].toString();
-                                if (choice.equals("Update")){
+                                if (choice.equals("Update")) {
                                     Intent intent = new Intent(MainFirestore.this, MainActivity.class);
                                     intent.putExtra("id", model.getId());
                                     intent.putExtra("title", holder.tv_title.getText().toString().trim());
                                     intent.putExtra("desc", holder.tv_desc.getText().toString().trim());
                                     startActivity(intent);
                                 }
-                                if (choice.equals("Delete")){
+                                if (choice.equals("Delete")) {
 
                                     db.collection("Documents").document(model.getId())
                                             .delete()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(getApplicationContext(), "deleted", Toast.LENGTH_SHORT).show();
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Toast.makeText(getApplicationContext(), "deleted", Toast.LENGTH_SHORT).show();
 //                                            show();
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(getApplicationContext(), "gagal deleted", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(getApplicationContext(), "gagal deleted", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
                                 }
                             }
                         });
@@ -132,11 +135,6 @@ public class MainFirestore extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
-
-    public void btn_toSHow(View view) {
-        startActivity(new Intent(MainFirestore.this, MainActivity.class));
-    }
-
 
     private class ModelsHolder extends RecyclerView.ViewHolder {
         TextView tv_title, tv_desc;

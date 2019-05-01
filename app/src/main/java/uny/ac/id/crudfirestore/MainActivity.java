@@ -28,11 +28,13 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_coba;
     Button btn_save, btn_show;
     ProgressDialog progressDialog;
+    Bundle bundle;
     //initialize cloud firestore
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private String mId;
 
-    String mId, mTitle, mDesc;
-    Bundle bundle;
+//    String mId, mTitle, mDesc;
+//    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,39 +43,30 @@ public class MainActivity extends AppCompatActivity {
         //method init
         init();
 
-        Intent intent = getIntent();
-        if (intent != null) {
+        if (bundle == null) {
+            btn_save.setText("Save");
+        } else {
             btn_save.setText("Update");
+            mId = bundle.getString("id");
+            String mTitle = bundle.getString("title");
+            String mDesc = bundle.getString("desc");
 
-            mId = intent.getStringExtra("id");
-            mTitle = intent.getStringExtra("title");
-            mDesc = intent.getStringExtra("desc");
-
-            //set data
             tv_coba.setText(mTitle);
             et_title.setText(mTitle);
             et_desc.setText(mDesc);
-        } else {
-//            actionBar.setTitle("Add Data");
-            btn_save.setText("save");
         }
     }
 
     public void btn_save(View view) {
-
-        Intent intent = getIntent();
-        Bundle bundle = getIntent().getExtras();
-        if (intent != null) {
-//            btn_save.setText("Update");
+        bundle = getIntent().getExtras();
+        if (bundle != null) {
             String id = mId;
             String title = et_title.getText().toString().trim();
             String desc = et_desc.getText().toString().trim();
             updateData(id, title, desc);
         } else {
-            //upload data
             String title = et_title.getText().toString().trim();
             String desc = et_desc.getText().toString().trim();
-            //function call to upload data
             uploadData(title, desc);
         }
     }
@@ -147,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         //firestore
         db = FirebaseFirestore.getInstance();
+        bundle = getIntent().getExtras();
     }
 
 }
