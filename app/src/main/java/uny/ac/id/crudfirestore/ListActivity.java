@@ -18,6 +18,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import uny.ac.id.crudfirestore.adapter.ListAdapter;
 import uny.ac.id.crudfirestore.model.ModelResponse;
 
 public class ListActivity extends AppCompatActivity {

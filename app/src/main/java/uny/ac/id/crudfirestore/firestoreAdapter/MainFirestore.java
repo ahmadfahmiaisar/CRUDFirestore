@@ -50,16 +50,17 @@ public class MainFirestore extends AppCompatActivity {
         show();
     }
 
-    public void btn_toSHow(View view) {
-        startActivity(new Intent(MainFirestore.this, MainActivity.class));
-    }
-
     private void init() {
         recyclerView = findViewById(R.id.recylceview_firestore);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         db = FirebaseFirestore.getInstance();
     }
+
+    public void btn_toSHow(View view) {
+        startActivity(new Intent(MainFirestore.this, MainActivity.class));
+    }
+
 
     private void show() {
         final Query query = db.collection("Documents");

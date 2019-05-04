@@ -1,4 +1,4 @@
-package uny.ac.id.crudfirestore;
+package uny.ac.id.crudfirestore.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import uny.ac.id.crudfirestore.ListActivity;
+import uny.ac.id.crudfirestore.R;
 import uny.ac.id.crudfirestore.model.ModelResponse;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {

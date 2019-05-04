@@ -42,43 +42,6 @@
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:749632712311:android:4a45966e3deacc8a",
-        "android_client_info": {
-          "package_name": "uny.ac.id.learncrudfirestore"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "749632712311-6lv57g0j2g0b796q3rvsubh9vo7hfp4a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "uny.ac.id.learncrudfirestore",
-            "certificate_hash": "dd4974c7f47a25cab0153598de26862662534baa"
-          }
-        },
-        {
-          "client_id": "749632712311-5a2pofglmnjh6b82ip8ubvm0ffn93dj9.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCwWscKOHbx2BxgjjB26YWkCDRyTgBtteQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "749632712311-5a2pofglmnjh6b82ip8ubvm0ffn93dj9.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"
